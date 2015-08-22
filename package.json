@@ -16,5 +16,9 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-react": "^0.12.2",
     "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "grunt-concurrent": "^2.0.2",
+    "grunt-nodemon": "^0.4.0"
   }
 }

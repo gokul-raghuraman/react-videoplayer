@@ -2,19 +2,61 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var Comp = require('./Comp.jsx');
+var VideoPlayer = require('./video-player.jsx');
 
-React.render(React.createElement(Comp, null), document.body);
-},{"./Comp.jsx":2,"react":313}],2:[function(require,module,exports){
+var playerConfig = {
+	video: {
+		url: "sample1.mp4",
+		type: "video/mp4"
+	},
+
+	playlist: [
+		{
+			id: "1",
+			name: "sample2",
+			url: "sample2.mp4",
+			type: "video/mp4"
+		},
+		{
+			id: "2",
+			name: "sample1",
+			url: "sample1.mp4",
+			type: "video/mp4"
+		},
+	]
+}
+
+React.render(
+	React.createElement("div", {className: "app"}, 
+		React.createElement(VideoPlayer, {config: playerConfig})
+	), 
+
+	document.body);
+},{"./video-player.jsx":2,"react":313}],2:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('React');
 
 module.exports = React.createClass({displayName: "exports",
 	render: function() {
+		console.log("CONFIG = " + JSON.stringify(this.props.config));
 		return (
-			React.createElement("div", null, 
-				React.createElement("p", null, " This is a component! ")
+			React.createElement("div", {className: "video-player-container"}, 
+				React.createElement("video", {id: "video-player", width: "100%", height: "100%"}, 
+					React.createElement("source", {src: this.props.config.video.url, type: this.props.config.video.type})
+					
+
+				), 
+
+				React.createElement("div", {id: "video-player-controls", className: "video-player-controls"}, 
+					React.createElement("div", {className: "seek-bar"}, 
+						React.createElement("div", {className: "seek-bar-lower"})
+						
+					), 
+					React.createElement("div", null
+
+					)
+				)
 			)	
 		);
 	}
